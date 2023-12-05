@@ -25,3 +25,12 @@ def contact(request):
         'title': 'Контакты'
     }
     return render(request, 'main/contact.html', context)
+
+
+def student(request, pk):
+    student_item = Students.objects.get(id=pk)
+    context = {
+        'object': student_item,
+        'title': f'студент - {student_item.first_name.title()} {student_item.last_name.title()}'
+    }
+    return render(request, 'main/student.html', context=context)
