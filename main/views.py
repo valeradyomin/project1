@@ -1,9 +1,25 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from main.models import Students
 
 
 # Create your views here.
+
+class StudentsListView(ListView):
+    model = Students
+    template_name = 'main/index.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     print(context)
+    #     return context
+
+
+class StudentDetailView(DetailView):
+    model = Students
+    template_name = 'main/student.html'
+
 
 def index(request):
     students_list = Students.objects.all()
