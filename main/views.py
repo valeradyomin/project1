@@ -24,7 +24,7 @@ class StudentDetailView(DetailView):
 def index(request):
     students_list = Students.objects.all()
     context = {
-        'objects_list': students_list,
+        'object_list': students_list,
         'title': 'Главная страница'
     }
     return render(request, 'main/index.html', context)

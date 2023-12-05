@@ -7,7 +7,7 @@ app_name = MainConfig.name
 
 urlpatterns = [
     path('', index, name='index'),
-    path('', StudentsListView.as_view(), name='index'),
+    # path('', StudentsListView.as_view(), name='index'),
     path('contact/', contact, name='contact'),
     path('student/<int:pk>', StudentDetailView.as_view(), name='student'),
     # path('student/<int:pk>', student, name='student'),
