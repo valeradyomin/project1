@@ -6,9 +6,9 @@ from main.views import index, contact, student, StudentsListView, StudentDetailV
 app_name = MainConfig.name
 
 urlpatterns = [
-    path('', index, name='index'),
-    # path('', StudentsListView.as_view(), name='index'),
-    path('contact/', contact, name='contact'),
-    path('student/<int:pk>', StudentDetailView.as_view(), name='student'),
+    # path('', index, name='index'),
     # path('student/<int:pk>', student, name='student'),
+    path('', StudentsListView.as_view(), name='index'),
+    path('student/<int:pk>', StudentDetailView.as_view(), name='student'),
+    path('contact/', contact, name='contact'),
 ]
