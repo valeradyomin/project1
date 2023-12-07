@@ -9,13 +9,9 @@
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
-                               <button type="submit" class="btn btn-success">
-                                   {% if object %}
-                                        Сохранить изменения
-                                   {% else %}
-                                        Создать
-                                   {% endif %}
-                               </button>
+                            <p>Удалить этот материал "{{ object.title }}"?</p>
+                            <button type="submit" class="btn btn-danger">Подтвердить</button>
+                            <a href="{% url 'materials:list' %}" class="btn btn-sm btn-outline-primary">Назад</a>
                         </form>
                     </div>
                 </div>
