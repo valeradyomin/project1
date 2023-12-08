@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 
-from main.models import Students
+from main.models import Student
 
 
 class Command(BaseCommand):
@@ -19,7 +19,7 @@ class Command(BaseCommand):
         students_lst_for_bulk_fill = []
         for student in students_list:
             students_lst_for_bulk_fill.append(
-                Students(**student)
+                Student(**student)
             )
 
-        Students.objects.bulk_create(students_lst_for_bulk_fill)
+        Student.objects.bulk_create(students_lst_for_bulk_fill)

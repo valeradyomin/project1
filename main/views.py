@@ -1,28 +1,30 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
-from main.models import Students
+from main.models import Student
 
 
 # Create your views here.
 
 class StudentsListView(ListView):
-    model = Students
+    model = Student
     template_name = 'main/index.html'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     print(context)
-    #     return context
 
 
 class StudentDetailView(DetailView):
-    model = Students
+    model = Student
     template_name = 'main/student.html'
 
 
+class StudentCreateView(CreateView):
+    model = Student
+    fields = ('first_name', 'last_name', 'avatar',)
+    success_url = reverse_lazy('main:index')
+
+
 def index(request):
-    students_list = Students.objects.all()
+    students_list = Student.objects.all()
     context = {
         'object_list': students_list,
         'title': 'Главная страница'
@@ -44,7 +46,7 @@ def contact(request):
 
 
 def student(request, pk):
-    student_item = Students.objects.get(id=pk)
+    student_item = Student.objects.get(id=pk)
     context = {
         'object': student_item,
         'title': f'студент - {student_item.first_name.title()} {student_item.last_name.title()}'

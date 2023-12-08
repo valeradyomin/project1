@@ -1,7 +1,7 @@
 from django.urls import path
 
 from main.apps import MainConfig
-from main.views import index, contact, student, StudentsListView, StudentDetailView
+from main.views import index, contact, student, StudentsListView, StudentDetailView, StudentCreateView
 
 app_name = MainConfig.name
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('', StudentsListView.as_view(), name='index'),
     path('student/<int:pk>', StudentDetailView.as_view(), name='student'),
     path('contact/', contact, name='contact'),
+    path('create/', StudentCreateView.as_view(), name='create_student'),
 ]

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from main.models import Students
+from main.models import Student
 
 # Register your models here.
 
@@ -8,7 +8,7 @@ from main.models import Students
 # admin.site.register(Students)
 
 
-@admin.register(Students)
+@admin.register(Student)
 class StudentsAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'is_active',)
     list_filter = ('is_active',)
