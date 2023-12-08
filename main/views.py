@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from main.models import Student
 
@@ -9,17 +9,28 @@ from main.models import Student
 
 class StudentsListView(ListView):
     model = Student
-    template_name = 'main/index.html'
+    # template_name = 'main/student_list.html'
 
 
 class StudentDetailView(DetailView):
     model = Student
-    template_name = 'main/student.html'
+    # template_name = 'main/student_detail.html'
 
 
 class StudentCreateView(CreateView):
     model = Student
     fields = ('first_name', 'last_name', 'avatar',)
+    success_url = reverse_lazy('main:index')
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    fields = ('first_name', 'last_name', 'avatar',)
+    success_url = reverse_lazy('main:index')
+
+
+class StudentDeleteView(DeleteView):
+    model = Student
     success_url = reverse_lazy('main:index')
 
 
@@ -29,7 +40,7 @@ def index(request):
         'object_list': students_list,
         'title': 'Главная страница'
     }
-    return render(request, 'main/index.html', context)
+    return render(request, 'main/student_list.html', context)
 
 
 def contact(request):
@@ -51,4 +62,4 @@ def student(request, pk):
         'object': student_item,
         'title': f'студент - {student_item.first_name.title()} {student_item.last_name.title()}'
     }
-    return render(request, 'main/student.html', context=context)
+    return render(request, 'main/student_detail.html', context=context)

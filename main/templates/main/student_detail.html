@@ -4,13 +4,11 @@
 
 <div class="card mb-3" style="max-width: 100%;">
   <div class="row g-0">
-    <div class="col-md-4">
-      <img class="card-img-top"
-             data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-             alt="Card image cap">
-    </div>
     <div class="col-md-8">
       <div class="card-body">
+        <div class="col-6">
+          <img src="/media/{{ object.avatar }}">
+        </div>
         <h2 class="card-title">{{ object.first_name|title }} {{ object.last_name|title }}</h2>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
