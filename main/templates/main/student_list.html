@@ -6,6 +6,11 @@
     </div>
 {% for object in object_list %}
 <div class="col-md-4">
+    {% if object.is_active %}
+        <a class="btn btn-warning" href="{% url 'main:toggle_activity' object.pk %}">Деактивировать</a>
+    {% else %}
+        <a class="btn btn-success" href="{% url 'main:toggle_activity' object.pk %}">Активировать</a>
+    {% endif %}
     <div class="card mb-4 box-shadow">
         <img class="card-img-top"
              data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
@@ -25,6 +30,7 @@
                     <a href="{% url 'main:delete_student' object.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
                 </div>
                 <small class="text-muted">{% now ‘format’ %}</small>
+
             </div>
         </div>
     </div>

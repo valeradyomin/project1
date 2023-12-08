@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from main.models import Student
@@ -63,3 +63,15 @@ def student(request, pk):
         'title': f'студент - {student_item.first_name.title()} {student_item.last_name.title()}'
     }
     return render(request, 'main/student_detail.html', context=context)
+
+
+def toggle_activity(request, pk):
+    student_item = get_object_or_404(Student, pk=pk)
+    if student_item.is_active:
+        student_item.is_active = False
+    else:
+        student_item.is_active = True
+
+    student_item.save()
+
+    return redirect(reverse('main:index'))
