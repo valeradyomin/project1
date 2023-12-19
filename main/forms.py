@@ -3,7 +3,15 @@ from django import forms
 from main.models import Student, Subject
 
 
-class StudentForm(forms.ModelForm):
+class CustomStyleMiXin:
+    # стилизация форм
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class StudentForm(CustomStyleMiXin, forms.ModelForm):
 
     class Meta:
         model = Student
@@ -20,24 +28,10 @@ class StudentForm(forms.ModelForm):
 
         return cleaned_data
 
-    # стилизация форм
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
 
-
-
-class SubjectForm(forms.ModelForm):
+class SubjectForm(CustomStyleMiXin, forms.ModelForm):
 
     class Meta:
         model = Subject
         fields = '__all__'
         # fields = ('title', 'description',)
-
-    # стилизация форм
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-
