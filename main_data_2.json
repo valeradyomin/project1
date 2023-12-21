@@ -1,0 +1,97 @@
+[
+  {
+    "model": "main.student",
+    "pk": 12,
+    "fields": {
+      "first_name": "Sam",
+      "last_name": "White",
+      "avatar": "",
+      "email": null,
+      "is_active": false
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 13,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Brown",
+      "avatar": "",
+      "email": "qwe@skypro.com",
+      "is_active": true
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 15,
+    "fields": {
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "avatar": "",
+      "email": null,
+      "is_active": true
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 16,
+    "fields": {
+      "first_name": "Jon",
+      "last_name": "Do",
+      "avatar": "",
+      "email": null,
+      "is_active": true
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 17,
+    "fields": {
+      "first_name": "Bob",
+      "last_name": "Dilan",
+      "avatar": "",
+      "email": "tmp@skypro.com",
+      "is_active": false
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 18,
+    "fields": {
+      "first_name": "Rozz",
+      "last_name": "Waters",
+      "avatar": "students/dune_byAI.png",
+      "email": null,
+      "is_active": true
+    }
+  },
+  {
+    "model": "main.student",
+    "pk": 19,
+    "fields": {
+      "first_name": "Don",
+      "last_name": "Don",
+      "avatar": "",
+      "email": null,
+      "is_active": true
+    }
+  },
+  {
+    "model": "main.subject",
+    "pk": 1,
+    "fields": {
+      "title": "Алгебра",
+      "description": "всякая всячина",
+      "student": 13
+    }
+  },
+  {
+    "model": "main.subject",
+    "pk": 2,
+    "fields": {
+      "title": "Музыка",
+      "description": "сольфеджо",
+      "student": 17
+    }
+  }
+]
