@@ -1,9 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from users.forms import UserRegisterForm, UserProfileForm
+from users.forms import UserRegisterForm, UserProfileForm, MyAuthenticationForm
 from users.models import User
 
 
@@ -23,3 +24,8 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class MyLoginView(LoginView):
+    model = User
+    form_class = MyAuthenticationForm
