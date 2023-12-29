@@ -1,3 +1,6 @@
+from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
@@ -14,18 +17,33 @@ class StudentsListView(ListView):
     # template_name = 'main/student_list.html'
 
 
-class StudentDetailView(DetailView):
+class StudentDetailView(LoginRequiredMixin, DetailView):
     model = Student
+    login_url = 'users:login'
     # template_name = 'main/student_detail.html'
+    extra_context = {
+        'title': 'Информация о студенте',
+    }
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+
+        if settings.CACHE_ENABLED:
+            key = f'subject_list_{self.object.pk}'
+            subject_list = cache.get(key)
+            if subject_list is None:
+                subject_list = self.object.subject_set.all()
+                cache.set(key, subject_list)
+        else:
+            subject_list = self.object.subject_set.all()
+
+        context_data['subjects'] = subject_list
+        return context_data
 
 
 class StudentCreateView(CreateView):
     model = Student
-    # OLD
-    # fields = ('first_name', 'last_name', 'avatar',)
     success_url = reverse_lazy('main:index')
-    # -> NEW
-    # add StudentForm
     form_class = StudentForm
 
 

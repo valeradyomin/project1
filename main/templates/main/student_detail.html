@@ -1,30 +1,50 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
-<div class="card mb-4 box-shadow ">
-        <img class="card-img-top"
-             data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-             alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">
-                {% if object.is_active %}
-                {{ object|title }}
-                {% else %}
-                <span class="text-muted">{{ object|title }}</span>
-                {% endif %}
-            </p>
-            <h2 class="card-title">{{ object.first_name|title }} {{ object.last_name|title }}</h2>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <a href="{% url 'main:student' object.pk %}" class="btn btn-sm btn-outline-success">View</a>
-                    <a href="{% url 'main:edit_student' object.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a href="{% url 'main:delete_student' object.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
-                    <a href="{% url 'main:index' %}" class="btn btn-sm btn-outline-primary">Назад</a>
-                </div>
-                <small class="text-muted">{% now ‘format’ %}</small>
+<div class="col-12">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Информация о студенте
+                </h3>
             </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>Имя</td>
+                        <td>{{ object.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия</td>
+                        <td>{{ object.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Почта</td>
+                        <td>{{ object.email }}</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="card-footer"></div>
         </div>
     </div>
-
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Предметы студента
+                </h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                {% for subject in subjects %}
+                    <li>{{ subject }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
 {% endblock %}
